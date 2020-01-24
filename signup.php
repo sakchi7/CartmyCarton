@@ -39,5 +39,32 @@
         <!--</div>-->
         </form>
     </div>
+
+<?php
+$db = mysqli_connect('localhost','root','password','cartmycarton');
+
+if(isset($_POST['submit'])=='Submit'){
+  $name = mysqli_escape_string($db,$_POST['name']) ;
+  $mobile_no = mysqli_escape_string($db,$_POST['mob_no']);
+  $registration_number = mysqli_escape_string($db,$_POST['reg_no']);
+  $email_address = mysqli_escape_string($db,$_POST['email']);
+  $password = mysqli_escape_string($db,$_POST['password']);
+  
+  $query = "INSERT INTO Users (Email_id,User_name,Mobile_no,Registration_no,User_password) VALUES ('$email_address','$name','$mobile_no','$registration_number','$password')";
+
+  $result = mysqli_query($db,$query);
+  
+  echo '$result';
+  
+  if($result){
+    echo "<script type='text/javascript'>alert('Submitted Successfully!!!')</script>";
+  }
+  else{
+   echo "<script type='text/javascript'>alert('Registration Failed. Please try again')</script>"; 
+  }
+}
+
+?>
+
 </body>
 </html>
