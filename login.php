@@ -69,6 +69,46 @@ error_reporting(0);
   </div>
   
 </div>
+
+<?php
+include("connectivity.php");
+//$db = mysqli_connect('localhost','root','password','cartmycarton');
+
+    if(isset($_POST['submit'])){
+        $userName = $_POST["reg_no"];
+        $passWord = $_POST["pwd"];
+     //$userName = mysqli_escape_string($db,$_POST['Registration_No']); 
+     //$passWord = mysqli_escape_string($db,$_POST['User_password']);
+     //$passWord=md5($password); 
+//echo"<center><h2>Sucess!!</h2></center>";
+$query = "SELECT * FROM users WHERE Registration_No='$userName' and User_password='$passWord'";
+$res = mysqli_query($db,$query);
+      //$login = mysqli_query("SELECT * FROM 'users' WHERE userName= $_post['username'] AND passWord= $_post['password'])");
+       // Check username and password match
+     // $res = mysqli_query($db,$query);
+        $rows = mysqli_fetch_array($res,MYSQLI_ASSOC);
+        $count = mysqli_num_rows($res); 
+     // $rows = mysqli_num_rows($res);
+      if ($count==1) {
+      // Set username session variable
+
+     // $_SESSION['Registration_No'] = $_POST['userName'];
+
+     // Jump to secured page
+//      header("Location: securedpage.php");
+    
+                 $_SESSION['register_no'] = $userName;
+              //   echo"<script type='text/javascript'>alert('Logged in Sucessfully')</script>" ;
+           $_SESSION['success'] = "You are now logged in";
+           header('location: home.php');
+     }
+     else {
+     // Jump to login page
+     echo "<script type='text/javascript'>alert('You are not Registered!! Please Signup')</script>" ;
+     }}
+     
+?> 
+
 </body>
 
 </html>
