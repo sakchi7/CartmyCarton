@@ -1,0 +1,100 @@
+body
+{
+        margin : 0;
+        padding : 0;
+}
+body:before
+{
+        content: '';
+        width: 100vw;
+        height: 100vh;
+        background-image: url(images/img.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(10px);
+        filter:
+}
+
+.reg_form
+{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        -moz-tranform: translate(-50%,-50%);
+        -ms-tansform: translate(-50%,-50%);;
+        -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        width : 450px;
+        height: 550px;
+        padding: 60px 30px;
+        background: rgba(0,0,0,0.4);
+}
+
+.reg_form h3
+{
+        margin: 2;
+        padding 0 0 10px;
+        color: #fff;
+        text-align: center;
+}
+
+.reg_form p
+{
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        color: #D3D3D3;
+}
+
+.reg_form input
+{
+        width: 100%;
+        margin-bottom: 20px;
+}
+
+.reg_form input[type = text],input[type = password],input[type = email],select
+{
+        border: none;
+        border-bottom: 1px solid #fff;
+	color: #fff;
+  	height: 23px;
+  	outline: none;
+ 	background: transparent;
+        font-size: 15px;
+}
+
+button 
+{
+	background-color: #CA226B;
+	color: white;
+	padding: 7px 10px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+        border-radius: 20px;
+	width: 100%;
+	opacity: 0.9;
+}
+
+.reg_form button:hover 
+{
+	opacity:1;
+}
+.cancelbtn 
+{
+	background-color: #000000;
+}
+.cancelbtn, .submitbtn 
+{
+	float: left;
+	width: 50%;
+}
+.end::after {
+  content: "";
+  clear: both;
+  display: table;
+}
