@@ -63,3 +63,34 @@
     </div>
   </form>
 </div>
+
+<?php
+   $register_num = $_SESSION['register_no'];
+   if(isset($_POST['submit'])){
+   $query1 = "SELECT * FROM users WHERE Registration_No = '$register_num'";
+   $result1 = mysqli_query($db,$query1);
+   $row1 = mysqli_fetch_assoc($result1); 
+   $curr_password = mysqli_escape_string($db,$_POST['curr_pass']); //current password taken as input
+   $current_pass = $row1["User_password"]; // current password of the user
+  
+   if($current_pass == $curr_password){
+       $new_password = mysqli_escape_string($db,$_POST['new_pass']);
+       $retype_new_password = mysqli_escape_string($db,$_POST['retype_new_pass']);
+       if($new_password == $retype_new_password){
+             $query2 = "UPDATE Users SET User_password = '$new_password' WHERE Registration_No = '$register_num'";
+             $result2 = mysqli_query($db,$query2);
+             if($result2){
+               echo "<script type='text/javascript'>alert('Password succesfully changed')</script>";
+               
+             }
+       }else{
+          echo "<script type='text/javascript'>alert('New Password and Retype Password are not same!')</script>";
+          exit; 
+       }
+   }
+   else{
+       echo "<script type='text/javascript'>alert('Current Password you entered is Incorrect!')</script>";
+   }
+
+}
+?>
