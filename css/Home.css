@@ -1,0 +1,57 @@
+body
+{
+    margin : 0;
+    padding : 0;
+}
+span h1
+{
+    color: #CA226B;
+    text-shadow: 2px 2px 5px #CA226B;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.navbar {
+  width: 100%;
+  background-color: #FFE4E1 ;
+  overflow: auto;
+  min-height: 250%;
+  font-weight: 500px;
+}
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  width: 15%;
+  text-align: center;
+  font-family: Times New Roman;
+}
+.navbar a:hover {
+  background-color: #F778A1;
+  text-decoration: none;
+}
+/*.active {
+  background-color: #CA226B;
+}
+*/
+.navbar li.active a{
+    border: 1px solid white;
+
+}
+@media screen and (max-width: 500px) {
+.navbar a {
+    float: none;
+    display: block;
+    overflow: hidden;
+}
+
+
+
+img{
+        width: 30px;
+        height: 20px;
+}
