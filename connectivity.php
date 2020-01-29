@@ -7,7 +7,7 @@
     $hostname = "localhost";        // Your MySQL hostname. Usualy named as 'localhost',        so you're NOT necessary to change this even this script has already     online on the   internet.
      $username = "root";             // Your database username.
     $password = "password";                 // Your database password. If your database has no           password, leave it empty.
-    $dbname   = "cartmycarton"; // Your database name.
+    $dbname   = "CartmyCarton"; // Your database name.
    
      // Let's connect to host
      $db = mysqli_connect($hostname, $username, $password, $dbname);// or DIE('Connection to host is failed, perhaps the service is down!');
