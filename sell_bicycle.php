@@ -94,5 +94,43 @@ include("connectivity.php");
         </form>
     </div></td></tr></table>
 
+    <?php
+        
+        $owner_id=$_SESSION['register_no'];
+        if(isset($_POST['submit']))
+        {
+            $c_name=mysqli_escape_string($db,$_POST['cycle_name']);
+            $c_color=mysqli_escape_string($db,$_POST['cycle_color']);
+            $p_date=mysqli_escape_string($db,$_POST['purchase_date']);
+            $amt=mysqli_escape_string($db,$_POST['amount']);
+            $c_type="cycle";
+            $filename=$_FILES['image']['name'];
+            $filetmpname=$_FILES['image']['tmp_name'];
+            $folder="images/";
+            move_uploaded_file($filetmpname, $folder.$filename);
+            $sql1="INSERT INTO `Products` (`product_name`,`product_type`,`owner_regno`) VALUES ('$c_name','$c_type','$owner_id')";
+            $result1=mysqli_query($db,$sql1);
+            if($result1){
+                $query2="SELECT product_id FROM Products WHERE product_name='$c_name' and owner_regno='$owner_id'";
+                $result2=mysqli_query($db,$query2);
+                $row=mysqli_fetch_assoc($result2);
+                $tmp=$row["product_id"];
+                $query3="INSERT INTO cycle (cycle_id,cycle_model,cycle_color,purchase_date,amount,image_path) VALUES ('$tmp','$c_name','$c_color','$p_date','$amt','$filename')";
+                $result3=mysqli_query($db,$query3);
+                if($result3)
+                {
+                    echo "<script type='text/javascript'>alert('Successfully Submitted')</script>";
+                }
+                else{
+                  echo "<script type='text/javascript'>alert('Failed! Please try again')</script>";
+                } 
+            }
+            else{
+                  echo "<script type='text/javascript'>alert('Failed! Please try again')</script>";
+            } 
+        }
+    ?>
+
+
 </body>
 </html>
