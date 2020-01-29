@@ -41,7 +41,7 @@
     </div>
 
 <?php
-$db = mysqli_connect('localhost','root','password','cartmycarton');
+$db = mysqli_connect('localhost','root','password','CartmyCarton');
 
 if(isset($_POST['submit'])=='Submit'){
   $name = mysqli_escape_string($db,$_POST['name']) ;
