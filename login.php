@@ -16,17 +16,7 @@ error_reporting(0);
 
   
 </head>
-<!--<style>
-		body {
- 			background-image: url('images/img.jpg');
-  			background-repeat: no-repeat;
-  			background-attachment: fixed; 
-  			background-size: 100% 100%;
-                        
-                        background-size: cover;
 
-		}
-	</style>-->
 <body background="images/img.jpg">
   <div class="login-wrap" style="background:rgb(255, 255, 255) transparent; background-repeat:repeat; height:200%; width:200%;"  >
        
