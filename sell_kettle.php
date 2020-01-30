@@ -99,6 +99,42 @@ include("connectivity.php");
         </form>
     </div></td></tr></table>
 
-    
+    <?php
+        
+        $owner_id=$_SESSION['register_no'];
+        if(isset($_POST['submit']))
+        {
+            $k_model=mysqli_escape_string($db,$_POST['kettle_model']);
+            $k_color=mysqli_escape_string($db,$_POST['kettle_color']);
+            $k_capacity=mysqli_escape_string($db,$_POST['kettle_capacity']);
+            $p_date=mysqli_escape_string($db,$_POST['purchase_date']);
+            $amt=mysqli_escape_string($db,$_POST['amount']);
+            $k_type="Kettle";
+            $filename=$_FILES['image']['name'];
+            $filetmpname=$_FILES['image']['tmp_name'];
+            $folder="images/";
+            move_uploaded_file($filetmpname, $folder.$filename);
+            $sql1="INSERT INTO `Products` (`product_name`,`product_type`,`owner_regno`) VALUES ('$k_model','$k_type','$owner_id')";
+            $result1=mysqli_query($db,$sql1);
+            if($result1){
+                $query2="SELECT product_id FROM Products WHERE product_name='$k_model' and owner_regno='$owner_id'";
+                $result2=mysqli_query($db,$query2);
+                $row=mysqli_fetch_assoc($result2);
+                $tmp=$row["product_id"];
+                $query3="INSERT INTO Kettle (kettle_id,kettle_model,kettle_color,kettle_capacity,purchase_date,amount,image_path) VALUES ('$tmp','$k_model','$k_color','$k_capacity','$p_date','$amt','$filename')";
+                $result3=mysqli_query($db,$query3);
+                if($result3)
+                {
+                    echo "<script type='text/javascript'>alert('Successfully Submitted')</script>";
+                }
+                else{
+                  echo "<script type='text/javascript'>alert('Failed! Please try again')</script>";
+                } 
+            }
+            else{
+                  echo "<script type='text/javascript'>alert('Failed! Please try again')</script>";
+            } 
+        }
+    ?>
 </body>
 </html>
