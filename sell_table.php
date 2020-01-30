@@ -99,6 +99,43 @@ include("connectivity.php");
         </form>
     </div></td></tr></table>
 
+    <?php
+        
+        $owner_id=$_SESSION['register_no'];
+        if(isset($_POST['submit']))
+        {
+            $t_name=mysqli_escape_string($db,$_POST['table_name']);
+            $t_color=mysqli_escape_string($db,$_POST['table_color']);
+            $t_material=mysqli_escape_string($db,$_POST['table_material']);
+            $p_date=mysqli_escape_string($db,$_POST['purchase_date']);
+            $amt=mysqli_escape_string($db,$_POST['amount']);
+            $t_type="Study Table";
+            $filename=$_FILES['image']['name'];
+            $filetmpname=$_FILES['image']['tmp_name'];
+            $folder="images/";
+            move_uploaded_file($filetmpname, $folder.$filename);
+            $sql1="INSERT INTO `Products` (`product_name`,`product_type`,`owner_regno`) VALUES ('$t_name','$t_type','$owner_id')";
+            $result1=mysqli_query($db,$sql1);
+            if($result1){
+                $query2="SELECT product_id FROM Products WHERE product_name='$t_name' and owner_regno='$owner_id'";
+                $result2=mysqli_query($db,$query2);
+                $row=mysqli_fetch_assoc($result2);
+                $tmp=$row["product_id"];
+                $query3="INSERT INTO StudyTable (table_id,table_name,table_color,table_material,purchase_date,amount,image_path) VALUES ('$tmp','$t_name','$t_color','$t_material','$p_date','$amt','$filename')";
+                $result3=mysqli_query($db,$query3);
+                if($result3)
+                {
+                    echo "<script type='text/javascript'>alert('Successfully Submitted')</script>";
+                }
+                else{
+                  echo "<script type='text/javascript'>alert('Failed! Please try again')</script>";
+                } 
+            }
+            else{
+                  echo "<script type='text/javascript'>alert('Failed! Please try again')</script>";
+            } 
+        }
+    ?>
     
 </body>
 </html>
