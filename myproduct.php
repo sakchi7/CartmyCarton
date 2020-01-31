@@ -273,6 +273,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                    
  </table>   
+ <a href="set_buyer.php"><center><button style="width: 50%;" type="submit" id="sold" name="sold" class="setbuyer">CLICK TO ADD SOLD ITEMS</button></center></a>	
+ <br>	
+ <br>
+ <br><br><br>
   
       <footer class="container-fluid bg-4 " style="background:#FFE4E1;">
          <p ><center>For more queries, email us at: <a href="mailto: cartmycarton001@gmail.com" target="_blank">cartmycarton001@gmail.com</a></center></p>
